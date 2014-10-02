@@ -14,7 +14,12 @@ public extension UIViewController
 	@objc(seg_navigationAndTabBarInsets)
 	public var navigationAndTabBarInsets: UIEdgeInsets {
 		get {
-			var top = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
+			let statusBarFrame = UIApplication.sharedApplication().statusBarFrame
+			var top: CGFloat = 0
+			if statusBarFrame != CGRectZero {
+				top = CGRectGetHeight(statusBarFrame)
+			}
+			
 			if let navController = navigationController {
 				top += CGRectGetHeight(navigationController!.navigationBar.frame)
 			}
@@ -56,9 +61,6 @@ public extension UIEdgeInsets
 	}
 }
 
-public extension Array
-{
-	public func isIndexLegal(index: Int) -> Bool {
-		return count != 0 && index >= 0 && index < count
-	}
+public func isIndexLegal(array: [AnyObject], index: Int) -> Bool {
+	return array.count != 0 && index >= 0 && index < array.count
 }

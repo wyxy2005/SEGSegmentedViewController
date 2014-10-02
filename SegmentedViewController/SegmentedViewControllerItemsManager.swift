@@ -131,7 +131,7 @@ public class SegmentedViewControllerItemsManager: NSCoding, SegmentedViewControl
 	}
 	
 	public func itemAtIndex(index: Int) -> SegmentedViewControllerItem? {
-		if items.isIndexLegal(index) && index != UISegmentedControlNoSegment {
+		if isIndexLegal(items, index) && index != UISegmentedControlNoSegment {
 			return items[index]
 		}
 		else {

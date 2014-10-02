@@ -99,7 +99,7 @@ public class SegmentedViewControllerItem: NSObject, NSCoding, Equatable {
 	public required init(coder aDecoder: NSCoder) {
 		var itemType = SegmentedItemType.None
 		if let wrappedType = aDecoder.decodeObjectForKey(SEGItemTypeCoderKey) as? NSNumber {
-			if let theType = SegmentedItemType.fromRaw(wrappedType.integerValue) {
+			if let theType = SegmentedItemType(rawValue: wrappedType.integerValue) {
 				itemType = theType
 			}
 		}
@@ -129,7 +129,7 @@ public class SegmentedViewControllerItem: NSObject, NSCoding, Equatable {
 	}
 	
 	public func encodeWithCoder(aCoder: NSCoder) {
-		let wrappedNumber = NSNumber.convertFromIntegerLiteral(type.toRaw())
+		let wrappedNumber = NSNumber(integer: type.rawValue)
 		aCoder.encodeObject(wrappedNumber, forKey: SEGItemTypeCoderKey)
 		
 		if let controller = viewController {
@@ -159,7 +159,7 @@ public class SegmentedViewControllerItem: NSObject, NSCoding, Equatable {
 	
 	// MARK: KVO
 	
-	public override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafeMutablePointer<Void>) {
+	public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
 		if !observerViewControllerPropertyChange(keyPath, change: change) {
 			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 		}

@@ -90,7 +90,7 @@ class SegmentedViewControllerItemTests: XCTestCase {
 		
 		XCTAssertNotNil(typeItem, "Item type not encoded")
 		XCTAssertTrue(typeItem is NSNumber, "Item type not encoded as NSNumber")
-		XCTAssertEqual((typeItem as NSNumber).integerValue, SegmentedItemType.None.toRaw(), "Encoded type not SegmentedItemType.None")
+		XCTAssertEqual((typeItem as NSNumber).integerValue, SegmentedItemType.None.rawValue, "Encoded type not SegmentedItemType.None")
 	}
 	
 	func testEncodeWithCoderWithController() {
@@ -136,7 +136,7 @@ class SegmentedViewControllerItemTests: XCTestCase {
 		let typeItem = decoder.decodeObjectForKey(SEGItemTypeCoderKey) as? NSNumber
 		
 		XCTAssertNotNil(typeItem, "Item type not encoded")
-		XCTAssertEqual(SegmentedItemType.Text, SegmentedItemType.fromRaw(typeItem!.integerValue)!, "Item type not encoded as Text")
+		XCTAssertEqual(SegmentedItemType.Text, SegmentedItemType(rawValue: typeItem!.integerValue)!, "Item type not encoded as Text")
 	}
 	
 	func testEncodeWithCoderWithIcon() {
@@ -166,7 +166,7 @@ class SegmentedViewControllerItemTests: XCTestCase {
 		let typeItem = decoder.decodeObjectForKey(SEGItemTypeCoderKey) as? NSNumber
 		
 		XCTAssertNotNil(typeItem, "Item type not encoded")
-		XCTAssertEqual(SegmentedItemType.Icon, SegmentedItemType.fromRaw(typeItem!.integerValue)!, "Item type not encoded as Icon")
+		XCTAssertEqual(SegmentedItemType.Icon, SegmentedItemType(rawValue: typeItem!.integerValue)!, "Item type not encoded as Icon")
 	}
 	
 	func testObserveChangeToTitleOfControllerUpdatesText() {

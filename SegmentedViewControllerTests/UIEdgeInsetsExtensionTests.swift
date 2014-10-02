@@ -16,10 +16,10 @@ class UIEdgeInsetsExtensionTests: XCTestCase {
 		let extraInsets = UIEdgeInsetsMake(1, 1, 1, 1)
 		insets.sumWithInsets(extraInsets)
 		
-		XCTAssertEqual(1, insets.top, "Top not provided new value")
-		XCTAssertEqual(1, insets.bottom, "Bottom not provided new value")
-		XCTAssertEqual(1, insets.left, "Left not provided new value")
-		XCTAssertEqual(1, insets.right, "Right not provided new value")
+		XCTAssertEqual(1, Int(insets.top), "Top not provided new value")
+		XCTAssertEqual(1, Int(insets.bottom), "Bottom not provided new value")
+		XCTAssertEqual(1, Int(insets.left), "Left not provided new value")
+		XCTAssertEqual(1, Int(insets.right), "Right not provided new value")
 	}
 	
 }
